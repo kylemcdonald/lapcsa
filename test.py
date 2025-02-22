@@ -1,7 +1,7 @@
 import numpy as np
 import lapcsa
 
-side = 250
+side = 128
 n = side * side
 
 lhs = np.random.uniform(low=-1, high=+1, size=(n, 2))
