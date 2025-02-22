@@ -404,7 +404,7 @@ double parse_arcs(csa_arc* arcs, unsigned int arc_count, unsigned int lhs_n, uns
     return max_cost;
 }
 
-static double csa(double* cost, unsigned int n, unsigned int* lhs_sol, unsigned int* rhs_sol) {
+static double csa(double* cost, unsigned int n, unsigned int* lhs_sol, unsigned int* rhs_sol, double default_scale_factor) {
 	// build temporary arcs from the dense cost matrix
     // (ideally we can do this directly to save time, but for now
     // this makes it easier to write the code that does sparse solving)
@@ -434,7 +434,7 @@ static double csa(double* cost, unsigned int n, unsigned int* lhs_sol, unsigned 
     // free our temporary arcs
     (void) free((char *) arcs); // should we be freeing with char* or..?
 
-    scale_factor = DEFAULT_SCALE_FACTOR;
+    scale_factor = default_scale_factor;
     po_cost_thresh = 2.0 * (double) n * (scale_factor + 1);
     
     printf("Finding best_build...\n");

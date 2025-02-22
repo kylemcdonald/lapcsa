@@ -1,6 +1,5 @@
 #define    TRUE    1
 #define    FALSE    0
-#define    DEFAULT_SCALE_FACTOR    10
 #define    EXCESS_THRESH    0
 #define    ACTIVE_TYPE    csa_stack
 #define    create_active(size)    active = st_create(size)
