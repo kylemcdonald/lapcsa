@@ -2,7 +2,7 @@ import numpy as np
 from scipy.spatial.distance import cdist
 
 cdef extern from "csa.c":
-    double csa(double* cost, int n, unsigned int* lhs_sol, unsigned int* rhs_sol)
+    double csa(double* cost, int n, unsigned int* lhs_sol, unsigned int* rhs_sol, double default_scale_factor)
 
 # what about nogil?
 # what about avoiding memory copies?
