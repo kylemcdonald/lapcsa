@@ -1,7 +1,3 @@
-# run:
-# python setup.py build_ext --inplace
-# python test.py
-
 from setuptools import setup, Extension, find_packages
 from Cython.Build import cythonize
 import numpy as np
