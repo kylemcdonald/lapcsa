@@ -463,5 +463,21 @@ static double csa(double* cost, unsigned int n, unsigned int* lhs_sol, unsigned 
         cost_sol += cost;
     }
 
+    // Free all allocated memory
+    free((char *)head_lr_arc);
+    free((char *)head_lhs_node);
+    free((char *)head_rhs_node);
+    free((char *)active->bottom);
+    free((char *)active);
+
     return cost_sol;
+}
+
+void st_destroy(csa_stack s) {
+    if (s) {
+        if (s->bottom) {
+            free((char *)s->bottom);
+        }
+        free((char *)s);
+    }
 }
