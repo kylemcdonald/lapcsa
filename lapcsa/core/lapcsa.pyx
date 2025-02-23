@@ -2,12 +2,12 @@ import numpy as np
 from scipy.spatial.distance import cdist
 
 cdef extern from "csa.c":
-    double csa(double* cost, int n, unsigned int* lhs_sol, unsigned int* rhs_sol, double default_scale_factor)
+    double csa(double* cost, int n, unsigned int* lhs_sol, unsigned int* rhs_sol, double default_scale_factor, double min_epsilon_factor)
 
 # what about nogil?
 # what about avoiding memory copies?
 # need to clean up after all the mallocs somehow
-def lapcsa(lhs, rhs, scale_factor=10.0):
+def lapcsa(lhs, rhs, scale_factor=10.0, min_epsilon_factor=2.0):
     dim = len(lhs)
     print('Calculating distances...')
     dist = cdist(lhs, rhs, 'euclidean')
@@ -17,5 +17,5 @@ def lapcsa(lhs, rhs, scale_factor=10.0):
     cdef double[:,::1] dist_view = dist
     cdef unsigned int[::1] lhs_sol_view = lhs_sol
     cdef unsigned int[::1] rhs_sol_view = rhs_sol
-    cost_sol = csa(&dist_view[0,0], dist.shape[0], &lhs_sol_view[0], &rhs_sol_view[0], scale_factor)
+    cost_sol = csa(&dist_view[0,0], dist.shape[0], &lhs_sol_view[0], &rhs_sol_view[0], scale_factor, min_epsilon_factor)
     return cost_sol, lhs_sol, rhs_sol

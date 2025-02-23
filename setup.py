@@ -14,7 +14,7 @@ ext_modules = [
 
 setup(
     name="lapcsa",
-    version="0.1.2",
+    version="0.1.3",
     author="Kyle McDonald",
     description="A fast implementation of the CSA algorithm",
     url="https://github.com/kylemcdonald/lapcsa",
